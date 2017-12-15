@@ -14,7 +14,7 @@ namespace sstc
         {
             int n = args.Length;
             foreach(string arg in args){
-                if(arg == "inhit"){
+                if(arg == "init"){
                     sstc.init();
                 }else if(arg == "add" && n >=2){
                     string[] added_files = new string[n-1];
@@ -25,9 +25,9 @@ namespace sstc
                 }else if(arg == "commit" && n==2 ){
                     sstc.commit(args[1]);
                     break;
-                }/*else if(arg ==  "log"){
-
-                }*/
+                }else if(arg ==  "log"){
+                    sstc.log();
+                }
             } 
             //string currentDirName = Directory.GetCurrentDirectory();
         }

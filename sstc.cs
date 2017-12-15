@@ -84,25 +84,32 @@ namespace sstc
                     }
                 }
             
+            string commmit_hash;
             using (StreamWriter sw = new StreamWriter(current_commit_path,true))
             {
-                sw.Write(message+"->");
                 string commit_content = File.ReadAllText(current_commit_path);
-                sw.Write(helper.SHA_1(commit_content));
+                commmit_hash = helper.SHA_1(commit_content);
+                sw.Write(message+"->"+commmit_hash);
             }
+
+            DateTime commit_date = DateTime.Now ;
+            using (StreamWriter sw = new StreamWriter(".sstc/branches/master/commits_log.txt",true)){
+                sw.WriteLine(current_commit+"->"+commmit_hash+"->"+commit_date+"->"+message);
+            }
+
             string current_content = "branch->master\n";
             current_content += "commit->"+current_commit;
             File.WriteAllText(".sstc/current.txt",current_content);
             
-           /* using (StreamWriter sw = new StreamWriter(".sstc/branches/master/commits_log.txt",true){
-                sw.WriteLine(""+"->"+"");
-            }*/
         }
-        /*public static void log(){
-            using (StreamWriter sw = new StreamWriter(".sstc/branches/master/commits_log.txt",true){
-                
+        public static void log(){
+            string[] commits = File.ReadAllLines(".sstc/branches/master/commits_log.txt");
+            foreach (string line in commits)
+            {
+                string[] sections = line.Split("->");
+                Console.WriteLine(sections[0]+ " "+sections[1]+" "+sections[2]+ "  "+sections[3]);
             }
-        }*/
+        }
     }
 
 }

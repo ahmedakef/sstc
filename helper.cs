@@ -33,6 +33,7 @@ namespace sstc
             return prev_files_tracked;
         }
         public static void write_all_text_commit_node(int commit_num,string traked_file){
+            
             string current_commit_path = ".sstc/branches/master/"+commit_num+".txt";
             using (StreamWriter sw = new StreamWriter(current_commit_path,true))
             {
@@ -50,6 +51,7 @@ namespace sstc
         }
 
         public static void write_changed_commit_node(int commit_num,int dependon_num,string traked_file){
+            
             string current_commit_path = ".sstc/branches/master/"+commit_num+".txt";
             string dependon_path = ".sstc/branches/master/"+dependon_num+".txt";
             string changes = delta_from_commited(traked_file,dependon_num);
@@ -58,7 +60,6 @@ namespace sstc
             }
             using (StreamWriter sw = new StreamWriter(current_commit_path,true))
             {
-                
                 sw.WriteLine(traked_file+"->"+helper.SHA_1(changes));
                 sw.WriteLine("----------------------");
                 sw.WriteLine(changes);
@@ -110,32 +111,22 @@ namespace sstc
                     break;
                 }
             }
-            
-            if(still_same_from_start > still_same_from_last){
-                for (int i = still_same_from_start; i < max_lines ; i++)
+
+                for (int i = still_same_from_start; i < max_lines -still_same_from_last ; i++)
                 {
-                    if(source_lines_count < dest_lines_count){
-                        changes += "+/>"+i+"/>"+dest_lines[i];
-                    }else{
+                    if(i<source_lines_count - still_same_from_last){
                         changes += "-/>"+i+"/>"+source_lines[i];
                     }
-                    changes+="\n"; 
-                }
-            }else{
-                for (int i = 0; i <= max_lines-still_same_from_last ; i++)
-                {
-                    if(source_lines_count < dest_lines_count){
+                    if(i<dest_lines_count - still_same_from_last){
                         changes += "+/>"+i+"/>"+dest_lines[i];
-                    }else{
-                        changes += "-/>"+i+"/>"+source_lines[i];
                     }
-                    changes+="\n"; 
                 }
-            }
+
+
             return changes;
         }
 
     }
- 
 
+ 
 }
