@@ -1,0 +1,10 @@
+/home/ahmed/Dropbox/programing/c#/sstc/bin/Debug/netcoreapp2.0/sstc.deps.json
+/home/ahmed/Dropbox/programing/c#/sstc/bin/Debug/netcoreapp2.0/sstc.runtimeconfig.json
+/home/ahmed/Dropbox/programing/c#/sstc/bin/Debug/netcoreapp2.0/sstc.runtimeconfig.dev.json
+/home/ahmed/Dropbox/programing/c#/sstc/bin/Debug/netcoreapp2.0/sstc.dll
+/home/ahmed/Dropbox/programing/c#/sstc/bin/Debug/netcoreapp2.0/sstc.pdb
+/home/ahmed/Dropbox/programing/c#/sstc/obj/Debug/netcoreapp2.0/sstc.csproj.CoreCompileInputs.cache
+/home/ahmed/Dropbox/programing/c#/sstc/obj/Debug/netcoreapp2.0/sstc.AssemblyInfoInputs.cache
+/home/ahmed/Dropbox/programing/c#/sstc/obj/Debug/netcoreapp2.0/sstc.AssemblyInfo.cs
+/home/ahmed/Dropbox/programing/c#/sstc/obj/Debug/netcoreapp2.0/sstc.dll
+/home/ahmed/Dropbox/programing/c#/sstc/obj/Debug/netcoreapp2.0/sstc.pdb
