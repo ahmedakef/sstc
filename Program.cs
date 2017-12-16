@@ -33,11 +33,18 @@ namespace sstc
                     sstc.log();
                 }else if(command == "checkout" && n==2){
                     sstc.checkout(Convert.ToInt32(args[1]));
+                }else if(command == "help"){
+                    Console.WriteLine("init                 \t\t initialize a repo");
+                    Console.WriteLine("add <file path> ...  \t\t to add files to staging area");
+                    Console.WriteLine("commit               \t\t to commit changes");
+                    Console.WriteLine("log                  \t\t to list commits history");
+                    Console.WriteLine("checkout <commit_num>\t\t to change source code to this commit");
+                    Console.WriteLine("help                 \t\t to list manual");
                 }else{
-                    Console.WriteLine("command {0} no found \n use sstc help to know the commands",command);
+                    Console.WriteLine("command {0} not found \n use help to know the commands",command);
                 }
             } else {
-                Console.WriteLine("use sstc help to know the commands");
+                Console.WriteLine("use help to know the commands");
             }
         }
     }

@@ -1,6 +1,7 @@
 *.csproj
 bin/
 obj/
+.sstc/
 .vscode/
 *.html
 *.css
