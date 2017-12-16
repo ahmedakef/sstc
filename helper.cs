@@ -60,12 +60,11 @@ namespace sstc
                 for (int i = still_same_from_start; i < max_lines -still_same_from_last ; i++)
                 {
                     if(i<source_lines_count - still_same_from_last){
-                        changes += "-/>"+i+"/>"+source_lines[i];
+                        changes += "-/>"+i+"/>"+source_lines[i]+"\n";
                     }
                     if(i<dest_lines_count - still_same_from_last){
-                        changes += "+/>"+i+"/>"+dest_lines[i];
+                        changes += "+/>"+i+"/>"+dest_lines[i]+"\n";
                     }
-                    changes+="\n";
                 }
             
 

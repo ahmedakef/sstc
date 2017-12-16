@@ -12,6 +12,7 @@ namespace sstc
     {
         static void Main(string[] args)
         {
+            
             int n = args.Length;
             string command = "";
 

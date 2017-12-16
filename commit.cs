@@ -54,7 +54,7 @@ namespace sstc
                 string current_content = File.ReadAllText(traked_file).Trim(' ','\n');
                 Commit dependon_commit = new Commit(dependon_num);
                 string source_content = dependon_commit.get_file_content(traked_file);
-                string changes = helper.delta(source_content,traked_file);
+                string changes = helper.delta(source_content,current_content);
                 if(changes == "THEY ARE SAME"){
                     return;
                 }
@@ -87,7 +87,7 @@ namespace sstc
             }
 
             Current.commit = commit_num;
-            File.WriteAllText(".sstc/branches/master/tracked.txt",""); // remove from stageing area
+            Stage.clear();
 
             Console.WriteLine("files commited successfully");
         }

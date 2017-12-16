@@ -32,20 +32,10 @@ namespace sstc
         }
 
         public static void add(string[] added_files){
-            string[] added = File.ReadAllLines(".sstc/branches/master/tracked.txt");
-            using (StreamWriter sw = new StreamWriter(".sstc/branches/master/tracked.txt",true))
-            {
-                for (int i = 0; i < added_files.Length; i++)
-                {
-                    if(Array.IndexOf(added,added_files[i])==-1){
-                        sw.WriteLine(added_files[i]);
-                        Console.WriteLine(added_files[i]+" added to the stage successfully");
-                    }
-                }
-            }
+            Stage.add_files(added_files);
         }
         public static void commit(string message){
-            string[] traked_files = File.ReadAllLines(".sstc/branches/master/tracked.txt");
+            string[] traked_files = Stage.get_traked_files();
             int current_commit = Current.commit;
             Commit commit = new Commit(current_commit);
                 
