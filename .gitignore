@@ -1,0 +1,7 @@
+*.csproj
+bin/
+obj/
+.vscode/
+*.html
+*.css
+*.js
