@@ -6,11 +6,11 @@ My own implementation for source code management system (SCM)
 the main feature of the system is to record every change when you commit and let you checkout to this commit at any time
 
 ## Main features
-1. add         to add files to staging area
-2. commit      to commit changes
-3. log         to list commits history
-4. checkout    to change source code to this commit
-5. help        to list manual
+1. `add`         to add files to staging area
+2. `commit`      to commit changes
+3. `log`         to list commits history
+4. `checkout`    to change source code to this commit
+5. `help`        to list manual
 
 ### initialize a repo
 
