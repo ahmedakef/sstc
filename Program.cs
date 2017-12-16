@@ -35,7 +35,6 @@ namespace sstc
                 }else{
                     Console.WriteLine("command {0} no found \n use sstc help to know the commands",command);
                 }
-                //string currentDirName = Directory.GetCurrentDirectory();
             } else {
                 Console.WriteLine("use sstc help to know the commands");
             }
