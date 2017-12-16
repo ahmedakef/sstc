@@ -30,14 +30,14 @@ namespace sstc
                 Console.WriteLine("The process failed: {0}", e.ToString());
             }
         }
-        public static void status(){
+        /*public static void status(){
             string CurrentDirectoryPath = Directory.GetCurrentDirectory();
             DirectoryInfo CurrentDirectory = new DirectoryInfo(CurrentDirectoryPath);
             foreach (FileInfo fi in CurrentDirectory.GetFiles())
             {
 
             }
-        }
+        }*/
         public static void add(string[] added_files){
             string[] added = File.ReadAllLines(".sstc/branches/master/tracked.txt");
             using (StreamWriter sw = new StreamWriter(".sstc/branches/master/tracked.txt",true))
@@ -46,7 +46,7 @@ namespace sstc
                 {
                     if(Array.IndexOf(added,added_files[i])==-1){
                         sw.WriteLine(added_files[i]);
-                        Console.WriteLine("file added to the stage successfully");
+                        Console.WriteLine(added_files[i]+" added to the stage successfully");
                     }
                 }
             }
@@ -56,30 +56,21 @@ namespace sstc
             string prev_commit = File.ReadAllLines(".sstc/current.txt")[1].Split("->")[1];
             int current_commit = Convert.ToInt32(prev_commit)+1;
             string current_commit_path = ".sstc/branches/master/"+current_commit+".txt";
-            
+
                 if(prev_commit == "0"){
                     foreach (string traked_file in traked_files){      
                         helper.write_all_text_commit_node(current_commit,traked_file);
                     }
                     
-                    using (StreamWriter sw_do = new StreamWriter(".sstc/branches/master/depend_on.txt",true)){
-                        foreach (string traked_file in traked_files){      
-                            sw_do.WriteLine(traked_file+"->"+current_commit);
-                        }
-                    }
                 }else{
                     List<string> prev_files_tracked = helper.prevFilesTracked();
-                    foreach (string file in traked_files)
+                    foreach (string traked_file in traked_files)
                     {
-                        if(prev_files_tracked.IndexOf(file) == -1){ 
-                            using (StreamWriter sw_do = new StreamWriter(".sstc/branches/master/depend_on.txt",true)){    
-                                sw_do.WriteLine(file+"->"+current_commit);
-                            }
-                            helper.write_all_text_commit_node(current_commit,file);
+                        if(prev_files_tracked.IndexOf(traked_file) == -1){ 
+                            helper.write_all_text_commit_node(current_commit,traked_file);
                         }else{
-                            string[] depend_on_content = File.ReadAllLines(".sstc/branches/master/depend_on.txt");
-                            int commit_depend_on = Convert.ToInt32(depend_on_content[prev_files_tracked.IndexOf(file)].Split("->")[1]);
-                            helper.write_changed_commit_node(current_commit,commit_depend_on,file);
+                            int commit_depend_on = Depend_on.get_commit_num(traked_file);
+                            helper.write_changed_commit_node(current_commit,commit_depend_on,traked_file);
                         }
                     }
                 }
@@ -100,7 +91,39 @@ namespace sstc
             string current_content = "branch->master\n";
             current_content += "commit->"+current_commit;
             File.WriteAllText(".sstc/current.txt",current_content);
-            
+            File.WriteAllText(".sstc/branches/master/tracked.txt",""); // remove from stageing area
+
+            Console.WriteLine("files commited successfully");
+        }
+        public static void checkout(int commit_num){
+            Commit commit = new Commit(commit_num);
+            string[] files_commited = commit.get_files_commited();
+            for (int i = 0; i < files_commited.Length ; i++)
+            {
+                string[] file_changes = commit.get_file_content(files_commited[i]).Split("\n");
+                int commit_depend_on = Depend_on.get_commit_num(files_commited[i]);
+                Commit dependon_commit = new Commit(commit_depend_on);
+                List<string> dependon_file = new List<string>(dependon_commit.get_file_content(files_commited[i]).Split("\n"));
+                if(commit_depend_on == commit_num){
+                    File.WriteAllLines(files_commited[i],dependon_file);
+
+                    continue;
+                }
+                
+                foreach (string line in file_changes){
+                    bool add = line[0]=='+';
+                    int line_num = Convert.ToInt32(line.Split("/>")[1]);
+                    string line_content = line.Split("/>")[2];
+                    if(add){
+                        dependon_file.Insert(line_num,line_content);
+                    }else{
+                        dependon_file.Remove(line_content);
+                        
+                    }
+                }
+                File.WriteAllLines(files_commited[i],dependon_file);
+
+            }
         }
         public static void log(){
             string[] commits = File.ReadAllLines(".sstc/branches/master/commits_log.txt");

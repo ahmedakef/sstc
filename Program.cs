@@ -13,23 +13,32 @@ namespace sstc
         static void Main(string[] args)
         {
             int n = args.Length;
-            foreach(string arg in args){
-                if(arg == "init"){
+            string command = "";
+
+            if (n >= 1) {
+                command = args[0];
+            }
+
+            if (command != "") {
+                if(command == "init"){
                     sstc.init();
-                }else if(arg == "add" && n >=2){
+                }else if(command == "add" && n >=2){
                     string[] added_files = new string[n-1];
                     Array.Copy(args,1,added_files,0,n-1);
-                    sstc.add(added_files);
-                    break;
-                    
-                }else if(arg == "commit" && n==2 ){
+                    sstc.add(added_files);                
+                }else if(command == "commit" && n==2 ){
                     sstc.commit(args[1]);
-                    break;
-                }else if(arg ==  "log"){
+                }else if(command ==  "log"){
                     sstc.log();
+                }else if(command == "checkout" && n==2){
+                    sstc.checkout(Convert.ToInt32(args[1]));
+                }else{
+                    Console.WriteLine("command {0} no found \n use sstc help to know the commands",command);
                 }
-            } 
-            //string currentDirName = Directory.GetCurrentDirectory();
+                //string currentDirName = Directory.GetCurrentDirectory();
+            } else {
+                Console.WriteLine("use sstc help to know the commands");
+            }
         }
     }
 }

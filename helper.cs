@@ -33,52 +33,27 @@ namespace sstc
             return prev_files_tracked;
         }
         public static void write_all_text_commit_node(int commit_num,string traked_file){
-            
-            string current_commit_path = ".sstc/branches/master/"+commit_num+".txt";
-            using (StreamWriter sw = new StreamWriter(current_commit_path,true))
-            {
-                try{
-                    string file_text = File.ReadAllText(traked_file);
-                    sw.WriteLine(traked_file+"->"+helper.SHA_1(file_text));
-                    sw.WriteLine("----------------------");
-                    sw.WriteLine(file_text);
-                    sw.WriteLine("===***===sstc===***===");
-                }catch(Exception e){
-                    Console.WriteLine("The process failed: {0}", e.ToString());
-                }
-                
-            }
+            Commit commit = new Commit(commit_num);
+            string file_text = File.ReadAllText(traked_file);
+            commit.write_changed_commit_node(traked_file,file_text);
+            Depend_on.add_file(traked_file,commit_num);
         }
 
         public static void write_changed_commit_node(int commit_num,int dependon_num,string traked_file){
             
-            string current_commit_path = ".sstc/branches/master/"+commit_num+".txt";
             string dependon_path = ".sstc/branches/master/"+dependon_num+".txt";
             string changes = delta_from_commited(traked_file,dependon_num);
             if(changes == "THEY ARE SAME"){
                 return;
             }
-            using (StreamWriter sw = new StreamWriter(current_commit_path,true))
-            {
-                sw.WriteLine(traked_file+"->"+helper.SHA_1(changes));
-                sw.WriteLine("----------------------");
-                sw.WriteLine(changes);
-                sw.WriteLine("===***===sstc===***===");
-            }
+            Commit commit = new Commit(commit_num);
+            commit.write_changed_commit_node(traked_file,changes);
         }
         public static string delta_from_commited(string file_name,int commit_num){
-            string commit_num_path = ".sstc/branches/master/"+commit_num+".txt";
-            string all_text =  File.ReadAllText(commit_num_path);
-            string[] all_text_splitted =all_text.Split("===***===sstc===***===");
-            string changes="";
-            foreach(string file_info in all_text_splitted){
-                if(file_name == file_info.Split("->")[0]){
-                    string source_content = file_info.Split("----------------------")[1].Trim(' ','\n');
-                    string current_content = File.ReadAllText(file_name).Trim(' ','\n');
-                    changes =  delta(source_content,current_content);
-                    break;
-                }
-            }
+            Commit commit = new Commit(commit_num);
+            string current_content = File.ReadAllText(file_name).Trim(' ','\n');
+            string source_content = commit.get_file_content(file_name);
+            string changes= delta(source_content,current_content);
             return changes;
         }
 
@@ -120,7 +95,9 @@ namespace sstc
                     if(i<dest_lines_count - still_same_from_last){
                         changes += "+/>"+i+"/>"+dest_lines[i];
                     }
+                    changes+="\n";
                 }
+            
 
 
             return changes;
