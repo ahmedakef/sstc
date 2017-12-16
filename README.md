@@ -65,7 +65,7 @@ to change source code to this commit:
 ```sh
 checkout <commit_num>
 ```
-it reads the delta from commit then combine it with origional file the write the result in the current file
+it reads the delta from commit then combine it with origional file then write the result in the current file
 ### show manual
 
 to list manual:
