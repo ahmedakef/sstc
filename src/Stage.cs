@@ -18,6 +18,10 @@ namespace sstc
             {
                 foreach (string file in added_files)
                 {
+                    if(!File.Exists(file)){
+                        Console.WriteLine(file + " doesn't exists");
+                        continue;
+                    }
                     if(Array.IndexOf(tracked_files,file)==-1){
                         sw.WriteLine(file);
                         Console.WriteLine(file+" added to the stage successfully");
