@@ -75,8 +75,10 @@ help
 ```
 ## Future work
 
-1. status      list changes and new files from the last commit
-2. branch      support branches and merge them
+1. `status`    to list changes and new files from the last commit
+2. `branch`      support branches and merge them
+3.  use `Zlib library` to compress changes
+4.  use `VCDIFF` to compute delta and compress it
 
 ## Resources
 
@@ -90,3 +92,8 @@ The [Eric Sink's Weblog](http://www.ericsink.com/) is A good place to learn abou
 Two answers on stackoverflow :
 - [Writing my own file versioning program](https://stackoverflow.com/questions/902314/writing-my-own-file-versioning-program)
 - [What are the core concepts of the Clearcase version control system every developer should know](https://stackoverflow.com/questions/645008/what-are-the-basic-clearcase-concepts-every-developer-should-know)
+
+
+## Contributing
+
+You can contribute by reviewing and sending feedback on code , suggesting a new features ,implement [Future work](https://github.com/ahmedakef/sstc#future-work) described above, as well as submit code fixes or code contributions of your own.
