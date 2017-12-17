@@ -86,7 +86,7 @@ take your time in learning the theory and the best design you need ,this resourc
 The [Eric Sink's Weblog](http://www.ericsink.com/) is A good place to learn about version control , specially:
 
 - [Time and Space Tradeoffs in Version Control Storage](http://www.ericsink.com/entries/time_space_tradeoffs.html)
-- his [series of articles Source Control HOWTO](http://ericsink.com/scm/source_control.html) specially his article on Repositories
+- [his series of articles Source Control HOWTO](http://ericsink.com/scm/source_control.html) specially his article on Repositories
 
 Two answers on stackoverflow :
 - [Writing my own file versioning program](https://stackoverflow.com/questions/902314/writing-my-own-file-versioning-program)
