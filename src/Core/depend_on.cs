@@ -2,7 +2,7 @@ using System;
 using System.IO;
 
 
-namespace sstc
+namespace Core
 {
 
     public static class Depend_on{

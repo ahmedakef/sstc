@@ -1,7 +1,8 @@
 using System;
 using System.IO;
+using Helper;
 
-namespace sstc
+namespace Core
 {
 
     public class Commit{

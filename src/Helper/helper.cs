@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace sstc
+namespace Helper
 {
     public static class helper{
         public static string SHA_1(string input)
