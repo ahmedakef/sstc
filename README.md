@@ -87,7 +87,6 @@ The [Eric Sink's Weblog](http://www.ericsink.com/) is A good place to learn abou
 
 - [Time and Space Tradeoffs in Version Control Storage](http://www.ericsink.com/entries/time_space_tradeoffs.html)
 - [his series of articles Source Control HOWTO](http://ericsink.com/scm/source_control.html) specially his article on Repositories
-- [Available Scripts](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#available-scripts)
 
 Two answers on stackoverflow :
 - [Writing my own file versioning program](https://stackoverflow.com/questions/902314/writing-my-own-file-versioning-program)
