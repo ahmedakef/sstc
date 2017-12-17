@@ -1,4 +1,4 @@
-# sstc
+# sstc (Stop Talk Start Code)
 My own implementation for source code management system (SCM)
 
 ## Quick Overview
