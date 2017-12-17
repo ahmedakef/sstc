@@ -77,8 +77,9 @@ help
 
 1. `status`    to list changes and new files from the last commit
 2. `branch`      support branches and merge them
-3.  use `Zlib library` to compress changes
-4.  use `VCDIFF` to compute delta and compress it
+3. use `Zlib library` to compress changes
+4. use `VCDIFF` to compute delta and compress it
+5. use any `DBMS` to store information about commits and branches
 
 ## Resources
 
