@@ -46,7 +46,7 @@ add <file path> ...
 compute delta from origional file and current file and store change in the commit file:
 
 ```sh
-commit
+commit <message>
 ```
 I have used flowe approach -mentioned in resources-.
 
